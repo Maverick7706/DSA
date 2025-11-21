@@ -15,5 +15,6 @@ typedef struct myNode
 
 void createLinkedList(void);
 void printLinkedList(Node *list);
+void addNode(Node *list);
 
 #endif

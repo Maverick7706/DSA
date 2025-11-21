@@ -40,3 +40,8 @@ void printLinkedList(Node *list)
         temp = temp->next;
     }
 }
+
+void addNode(Node *list)
+{
+    
+}
