@@ -2,7 +2,6 @@
 #define MAIN_H
 
 #include <stdio.h>
-#include <stdint.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -18,6 +17,7 @@ typedef struct myNode
 void createLinkedList(void);
 bool listIsEmpty(Node *list);
 void printLinkedList(Node *list);
-Node* addNode(Node *list,uint16_t pos); // pos is nth position from head (0 is head).
+Node* addNode(Node *list,int pos,int data); // pos is nth position from head (0 is head).
+int lengthOfList(Node *list);
 
 #endif
