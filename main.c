@@ -126,7 +126,8 @@ Node* addNode(Node *list,int pos,int data)
                         temp1 = temp1->next;
                     }
                     temp1->next = temp2;
-                    temp1 = NULL;
+                    temp2 = NULL;
+                    free(temp2);
                     return(list);
                 }
             }
