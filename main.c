@@ -6,9 +6,9 @@ static Node *head2;
 int main(void)
 {
     head1 = (Node *)malloc(sizeof(Node));
-//    createLinkedList();
-//    printLinkedList(head1);
-//    printf("Length of head1 is: %d\n",lengthOfList(head1));
+    createLinkedList();
+    printLinkedList(head1);
+    printf("Length of head1 is: %d\n",lengthOfList(head1));
     head2 = addNode(head2,0,123);
     printf("Length of head2 is: %d\n",lengthOfList(head2));
     printLinkedList(head2);
@@ -19,6 +19,7 @@ int main(void)
     head2 = addNode(head2,3,101112);
     head2 = addNode(head2,4,131415);
     head2 = addNode(head2,5,161718);
+    head2 = addNode(head2,-2,999);
     printf("Length of head2 is: %d\n",lengthOfList(head2));
     printLinkedList(head2);
     return 0;
@@ -67,9 +68,9 @@ void printLinkedList(Node *list)
     }
 }
 
-int lengthOfList(Node *list)
+unsigned int lengthOfList(Node *list)
 {
-    int length = 0;
+    unsigned int length = 0;
     Node *temp;
     temp = list;
     if(listIsEmpty(temp))
@@ -87,8 +88,14 @@ int lengthOfList(Node *list)
 
 Node* addNode(Node *list,int pos,int data)
 {
+    if(pos < 0)
+    {
+        printf("Invalid Operation: Position cannot be negative.\n");
+        return(list);
+    }
     Node *temp1;
     Node *temp2;
+    unsigned int count = 0;
     if(listIsEmpty(list) && (pos == 0)) // List is empty and we want to add the head.
     {
         printf("List is empty. Adding head.\n");
@@ -109,14 +116,14 @@ Node* addNode(Node *list,int pos,int data)
         else
         {
             temp1 = list;
-            if(pos > lengthOfList(temp1))
+            if(pos > lengthOfList(temp1)) // Entered an invalid positon.
             {
                 printf("Invalid Operation: Position exceeds length of list.\n");
                 return(list);
             }
             else
             {
-                if(pos == lengthOfList(temp1))
+                if(pos == lengthOfList(temp1)) // Adding at end.
                 {
                     temp2 = (Node *)malloc(sizeof(Node));
                     temp2->data = data;
@@ -128,6 +135,19 @@ Node* addNode(Node *list,int pos,int data)
                     temp1->next = temp2;
                     temp2 = NULL;
                     free(temp2);
+                    return(list);
+                }
+                else // Adding at nth position from the head.
+                {
+                    temp2 = (Node *)malloc(sizeof(Node));
+                    temp2->data = data;
+                    while(count != pos-1)
+                    {
+                        temp1 = temp1->next;
+                        count++;
+                    }
+                    temp2->next = temp1->next;
+                    temp1->next = temp2;
                     return(list);
                 }
             }

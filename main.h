@@ -13,11 +13,10 @@ typedef struct myNode
     int data; // 4 bytes
 }Node;
 
-
 void createLinkedList(void);
 bool listIsEmpty(Node *list);
 void printLinkedList(Node *list);
 Node* addNode(Node *list,int pos,int data); // pos is nth position from head (0 is head).
-int lengthOfList(Node *list);
+unsigned int lengthOfList(Node *list);
 
 #endif
